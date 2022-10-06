@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace:代表当前文件的唯一表示
+namespace.id :唯一的定位一条sql
+ -->
+<mapper namespace="com.dongzhih.mapper.StudentMapper">
+    <!--   -->
+    <select id="findAll" resultType="com.dongzhih.domain.Student">
+        select * from student
+    </select>
+    <select id="findStudentByScore" parameterType="java.lang.Integer"
+            resultType="java.lang.Integer">
+        select count(*) from student where score > 80
+    </select>
+
+    <insert id="saveStudent" parameterType="com.dongzhih.domain.Student">
+    insert into student(name,age,sex,score)values (#{name},#{age},#{sex},#{score})
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.String">
+        delete from student where name = #{name}
+    </delete>
+
+    <update id="updateStudent" parameterType="java.lang.Integer" >
+        update student set score = 100 where id = #{id}
+    </update>
+</mapper>
